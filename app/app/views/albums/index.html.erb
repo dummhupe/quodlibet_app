@@ -1,0 +1,8 @@
+<ul data-role="listview" data-filter="false" data-filter-placeholder="Suche Alben..." data-inset="true">
+  <% @albums.each do |a| %>
+    <li>
+      <a href="<%= artist_album_songs_path(a.artist, a) %>" data-transition="slide"><%= "#{a.date} - #{a.album}" %></a>
+      <a href="#" data-split-icon="plus" data-icon="plus" onclick="javascript:enqueue_album(<%= a.id %>);"></a>
+    </li>
+  <% end %>
+</ul>

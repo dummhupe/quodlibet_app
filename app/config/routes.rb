@@ -53,4 +53,23 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: 'artists#index'
+
+  resources :artists do
+    resources :albums do
+      resources :songs do
+        get :add_to_queue, to: 'songs#add_to_queue'
+      end
+      get :add_to_queue, to: 'albums#add_to_queue'
+    end
+  end
+
+  post :play, to: 'application#play'
+  post :pause, to: 'application#pause'
+  post :stop, to: 'application#stop'
+  post :play_previous, to: 'application#play_previous'
+  post :play_next, to: 'application#play_next'
+  post :enqueue_album, to: 'application#enqueue_album'
+  post :enqueue_song, to: 'application#enqueue_song'
 end

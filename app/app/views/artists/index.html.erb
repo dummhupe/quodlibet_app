@@ -1,0 +1,5 @@
+<ul data-role="listview" data-filter="false" data-filter-placeholder="Suche Künstler..." data-inset="true">
+  <% @artists.each do |a| %>
+    <li><%= link_to a.artist, artist_albums_path(a), "data-transition": "slide" %></li>
+  <% end %>
+</ul>
