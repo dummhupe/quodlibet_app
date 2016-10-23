@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
   def index
-    @albums = Album.where(artist_id: params[:artist_id])
+    @albums = Artist.find(params[:artist_id]).albums
   end
 end
