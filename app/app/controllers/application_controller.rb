@@ -52,6 +52,6 @@ class ApplicationController < ActionController::Base
 
   def retrieve_quodlibet_status
     @queue_count = `quodlibet --print-queue | wc -l`
-    @currently_playing = `quodlibet --print-playing "<artist>: <title> (<album>)"`
+    @currently_playing = `quodlibet --print-playing "<artist>: <title> (<album>, <~year>)"`
   end
 end
