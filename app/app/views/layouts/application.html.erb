@@ -26,7 +26,8 @@
   <div role="main" class="ui-content">
     <%= yield %>
   </div>
-  <div data-role="footer">
+  <div data-role="footer" data-position="fixed">
+    <h1><%= @queue_count %> Stücke in der Warteschlange</h1>
   </div>
 </div>
 

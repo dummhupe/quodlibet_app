@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :retrieve_quodlibet_status
+
   def play
     send_command "quodlibet --play"
     render layout: false
@@ -46,5 +48,9 @@ class ApplicationController < ActionController::Base
   def send_command(cmd)
     puts cmd
     system(cmd)
+  end
+
+  def retrieve_quodlibet_status
+    @queue_count = `quodlibet --print-queue | wc -l`
   end
 end

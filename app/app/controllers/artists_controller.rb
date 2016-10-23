@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Artist.order(:artist)
+    @artists = Artist.order(artistsort: :asc)
   end
 end
