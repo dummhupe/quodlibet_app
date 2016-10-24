@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :retrieve_quodlibet_status
+  before_action :set_defaults
 
   def play
     send_command "quodlibet --play"
@@ -44,10 +45,20 @@ class ApplicationController < ActionController::Base
     render layout: false
   end
 
+  def dequeue_song
+    @song = Song.find(params[:song_id])
+    send_command "quodlibet --unqueue \"#{@song.filename}\""
+    render layout: false
+  end
+
   private
   def send_command(cmd)
     puts cmd
     system(cmd)
+  end
+
+  def set_defaults
+    @title = "Library"
   end
 
   def retrieve_quodlibet_status

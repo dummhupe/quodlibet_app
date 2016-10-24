@@ -65,6 +65,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :queue_entries
+
   post :play, to: 'application#play'
   post :pause, to: 'application#pause'
   post :stop, to: 'application#stop'
@@ -72,4 +74,5 @@ Rails.application.routes.draw do
   post :play_next, to: 'application#play_next'
   post :enqueue_album, to: 'application#enqueue_album'
   post :enqueue_song, to: 'application#enqueue_song'
+  post :dequeue_song, to: 'application#dequeue_song'
 end

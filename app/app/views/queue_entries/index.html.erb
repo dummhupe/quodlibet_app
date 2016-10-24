@@ -1,0 +1,7 @@
+<ul data-role="listview" data-filter="false" data-filter-placeholder="Suche Titel..." data-inset="true">
+  <% @songs.each do |s| %>
+    <li data-icon="delete" id="song_<%= s.id %>">
+      <a href="#" onclick="javascript:dequeue_song(<%= s.id %>);"><%= "#{s.tracknumber} - #{s.title}" %></a>
+    </li>
+  <% end %>
+</ul>

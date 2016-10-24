@@ -11,7 +11,6 @@
 
 <div data-role="page">
   <div data-role="header" data-position="fixed">
-    <div class="ui-title"></div>
     <div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-left">
       <a href="#" class="ui-btn ui-btn-icon-left ui-icon-carat-l" data-rel="back">&nbsp;</a>
       <a href="#" class="ui-btn ui-btn-icon-left ui-icon-back" onclick="javascript:play_previous();">&nbsp;</a>
@@ -22,6 +21,7 @@
       <a href="#" class="ui-btn ui-btn-icon-left ui-icon-grid" onclick="javascript:pause();">&nbsp;</a>
       <a href="#" class="ui-btn ui-btn-icon-left ui-icon-delete" onclick="javascript:stop();">&nbsp;</a>
     </div>
+    <h1><%= @title %></h1>
   </div>
   <div role="main" class="ui-content">
     <%= yield %>
@@ -29,6 +29,7 @@
   <div data-role="footer" data-position="fixed">
     <h1><%= @currently_playing %></h1>
     <div class="ui-btn-right"><span class="ui-li-count"><%= @queue_count %></span></div>
+    <div class="ui-btn-left"><a href="<%= queue_entries_path %>" class="ui-btn ui-btn-icon-left ui-icon-bars">&nbsp;</a>
   </div>
 </div>
 
@@ -68,6 +69,10 @@
   }
   function enqueue_song(song_id){
     send("/enqueue_song", { song_id: song_id });
+  }
+  function dequeue_song(song_id){
+    send("/dequeue_song", { song_id: song_id });
+    $("#song_" + song_id).remove();
   }
 </script>
 
