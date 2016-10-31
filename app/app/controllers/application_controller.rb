@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_defaults
-    @title = "Library"
+    @title = "Musik"
   end
 
   def retrieve_quodlibet_status
