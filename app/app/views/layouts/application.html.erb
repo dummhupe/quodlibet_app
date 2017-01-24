@@ -24,6 +24,7 @@
     <h1><%= @title %></h1>
   </div>
   <div role="main" class="ui-content">
+    <div data-role="popup" id="message" class="ui-content"></div>
     <%= yield %>
   </div>
   <div data-role="footer" data-position="fixed">
@@ -34,6 +35,13 @@
 </div>
 
 <script type="text/javascript">
+  function show_popup(text){
+    $("#message").html("<p>" + text + "</p>");
+    $("#message").popup("open");
+    setTimeout(function(){
+      $("#message").popup("close");
+    }, 2000);
+  }
   function send(method, data=null){
     $.ajax({
       type: "POST",
@@ -43,8 +51,7 @@
       dataType: "text",
       success: (function(msg){
         if (msg && msg.length > 0){
-          // TODO: show popup for a few seconds...
-          alert(msg);
+          show_popup(msg);
         }
       })
     });
